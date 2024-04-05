@@ -10,7 +10,7 @@ config.load_kube_config()
 v1 = client.CoreV1Api()
 
 process = sys.argv[1]
-check_unavail = 0
+check_reaction = 0 #
 check_recover = 0
 
 
@@ -27,13 +27,13 @@ while True:
     # Iterate through the subsets
     for subset in res:
         
-        if subset.addresses is None and check_unavail == 0:
-            unvail_time = time.time() - start
-            print("Reaction time: " + str(unvail_time))
-            check_unavail = 1
+        if subset.addresses is None and check_reaction == 0:
+            reation_time = time.time() - start
+            print("Reaction time: " + str(reation_time))
+            check_reaction = 1
     
-        elif check_unavail == 1 and subset.addresses is not None:
-            recovery_time = time.time() - start - unvail_time
+        elif check_reaction == 1 and subset.addresses is not None:
+            recovery_time = time.time() - start - reation_time
             print("Recovery time: " + str(recovery_time))
             check_recover = 1
             break
