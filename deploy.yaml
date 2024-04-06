@@ -1,0 +1,71 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: detection1
+  namespace: serverless
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/window: 1030s
+    spec:
+      containers:
+      - env:
+        - name: TZ
+          value: Europe/Berlin
+        image: kienkauko/object_detection:ICCEv7@sha256:56ed1196b5df5a71950a9031bd567078883fdf5cdc34fda88b06282ba14ffb4a
+        ports:
+        - containerPort: 8080
+        resources:
+          limits:
+            cpu: 1000m
+      nodeSelector:
+        kubernetes.io/hostname: worker1
+---
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: detection2
+  namespace: serverless
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/window: 1030s
+    spec:
+      containers:
+      - env:
+        - name: TZ
+          value: Europe/Berlin
+        image: kienkauko/object_detection:ICCEv7@sha256:56ed1196b5df5a71950a9031bd567078883fdf5cdc34fda88b06282ba14ffb4a
+        ports:
+        - containerPort: 8080
+        resources:
+          limits:
+            cpu: 1000m
+      nodeSelector:
+        kubernetes.io/hostname: worker1
+---
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: detection3
+  namespace: serverless
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/window: 1030s
+    spec:
+      containers:
+      - env:
+        - name: TZ
+          value: Europe/Berlin
+        image: kienkauko/object_detection:ICCEv7@sha256:56ed1196b5df5a71950a9031bd567078883fdf5cdc34fda88b06282ba14ffb4a
+        ports:
+        - containerPort: 8080
+        resources:
+          limits:
+            cpu: 1000m
+      nodeSelector:
+        kubernetes.io/hostname: worker1
